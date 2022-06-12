@@ -110,6 +110,7 @@ cdef class Visualizer:
     cpdef void addPlane(self, coeffs, str id=*, int viewport=*) except*
     cpdef void addCircle(self, center, double radius, str id=*, int viewport=*) except*
     cpdef void addCube(self, translation, rotation, double width, double height, double depth, str id=*, int viewport=*) except*
+    cpdef void addPolygon(self, PointCloud cloud, color=*, bool isclosed=*, str id=*, int viewport=*) except*
 
     cpdef int getColorHandlerIndex(self, str id)
     cpdef int getGeometryHandlerIndex(self, str id)

@@ -594,6 +594,13 @@ cdef class Visualizer:
         cdef Vector3f t = Vector3f(translation[0], translation[1], translation[2])
         cdef Quaternionf r = Quaternionf(rotation[0], rotation[1], rotation[2], rotation[3])
         _ensure_true(self.ptr().addCube(t, r, width, height, depth, id.encode('ascii'), viewport), "addCube")
+    cpdef void addPolygon(self, PointCloud cloud, color=[0.5, 0.5, 0.5], bool isclosed=True, str id="polygon", int viewport=0) except*:
+        cdef shared_ptr[cPointCloud[PointXYZ]] ccloud_xyz
+        ccloud_xyz = make_shared[cPointCloud[PointXYZ]]()
+        fromPCLPointCloud2(deref(cloud._ptr.get()), deref(ccloud_xyz.get()))
+        _ensure_true(self.ptr().addPolygon[PointXYZ](
+            <const shared_ptr[const cPointCloud[PointXYZ]]>ccloud_xyz,
+            color[0], color[1], color[2], isclosed, id.encode('ascii'), viewport), "addPolygon")
 
     cpdef int getColorHandlerIndex(self, str id):
         return self.ptr().getColorHandlerIndex(id.encode())

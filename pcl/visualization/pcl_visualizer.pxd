@@ -181,6 +181,8 @@ cdef extern from "pcl/visualization/pcl_visualizer.h" namespace "pcl::visualizat
         bool addPolygon[PointT](const shared_ptr[const PointCloud[PointT]] &cloud, double r, double g, double b, const string &id, int viewport)
         # template <typename PointT> bool addPolygon (const typename pcl::PointCloud<PointT>::ConstPtr &cloud, const std::string &id = "polygon", int viewport = 0);
         bool addPolygon[PointT](const shared_ptr[const PointCloud[PointT]] &cloud, const string &id, int viewport)
+        # template <typename PointT> bool addPolygon (const typename pcl::PointCloud<PointT>::ConstPtr &cloud, double r, double g, double b, bool isclosed, const std::string &id = "polygon", int viewport = 0);
+        bool addPolygon[PointT](const shared_ptr[const PointCloud[PointT]] &cloud, double r, double g, double b, bool isclosed, const string &id, int viewport)
         # XXX: template <typename PointT> bool addPolygon (const pcl::PlanarPolygon<PointT> &polygon, double r, double g, double b, const std::string &id = "polygon", int viewport = 0);
 
         # template <typename P1, typename P2> bool addLine (const P1 &pt1, const P2 &pt2, const std::string &id = "line", int viewport = 0);
